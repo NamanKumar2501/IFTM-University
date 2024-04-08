@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.iftm.MainActivity
-import com.example.iftm.R
 import com.example.iftm.databinding.FragmentNewsBinding
 import com.example.iftm.news.adapter.ItemAdapter
 import com.example.iftm.news.networking.NewsApi

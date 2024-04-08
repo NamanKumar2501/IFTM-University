@@ -45,6 +45,7 @@
                 <include layout="@layout/shimmer_layout"></include>
                 <include layout="@layout/shimmer_layout"></include>
                 <include layout="@layout/shimmer_layout"></include>
+
             </LinearLayout>
         </com.facebook.shimmer.ShimmerFrameLayout>
 

@@ -46,16 +46,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(binding.root)
 
 
-
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         prefManager = PrefManager(this)
-
-
-
 
         val currentUser = FirebaseAuth.getInstance().currentUser
 
         val navigationView:NavigationView =  findViewById(R.id.nav_view);
+
         val header = navigationView.getHeaderView(0)
         val email: TextView =  header.findViewById(R.id.user_drawer_email);
         val name:TextView =  header.findViewById(R.id.user_drawer_name);
@@ -86,13 +83,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
 
 
-
+        // Use to loard Fragments
 
         val navView : BottomNavigationView = binding.navigation
 
         binding.navigation.visibility = View.VISIBLE
 
 
+        // Use to loard Fragments
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.findNavController()
 
@@ -111,13 +109,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding.navView.setNavigationItemSelectedListener(this)
 
 
-
         val toggle = ActionBarDrawerToggle(
             this, binding.drawerLayout, binding.toolbar, 0, 0
         )
+
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+//        \\\
 
 
     }
@@ -130,8 +129,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_quiz -> {
                 Navigation.findNavController(this,R.id.fragmentContainerView).navigate(R.id.quizFragment)
-            // replaceFragment(QuizFragment())
-            // Toast.makeText(this, "Quiz clicked", Toast.LENGTH_SHORT).show()
             }
             R.id.result -> {
                 Navigation.findNavController(this,R.id.fragmentContainerView).navigate(R.id.webViewFragment)
@@ -161,8 +158,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
 
-
-
             }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -174,15 +169,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         transaction.replace(R.id.fragmentContainerView, fragment)
             .commit()
     }
-   /* override fun onBackPressed() {
-        if (backPressedTime + 3000 > System.currentTimeMillis()) {
-            super.onBackPressed()
-            finish()
-        } else {
-            Toast.makeText(this, "Press back again to leave the app.", Toast.LENGTH_LONG).show()
-        }
-        backPressedTime = System.currentTimeMillis()
-    }
-*/
 
 }

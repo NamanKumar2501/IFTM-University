@@ -17,6 +17,6 @@ class NewsWebViewActivity : AppCompatActivity() {
         val web_view = findViewById<WebView>(R.id.web_view)
         if (src != null) {
             web_view.loadUrl(src)
-        };
+        }
     }
 }

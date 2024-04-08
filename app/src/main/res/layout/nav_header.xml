@@ -25,7 +25,7 @@
         android:id="@+id/user_drawer_name"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="Aditya kumar"
+        android:text="Naman kumar"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -37,7 +37,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/poppins_italic"
         android:inputType="textEmailAddress"
-        android:text="adityakumar234323@gmail.com"
+        android:text="namankumar@gmail.com"
         android:textColor="@color/Victoria"
         android:textSize="14sp"
         tools:ignore="TextViewEdits" />

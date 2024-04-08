@@ -55,6 +55,7 @@ class LoginActivity : AppCompatActivity() {
         binding.googleSignIn.setOnClickListener {
             signIn()
         }
+
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken("447589151619-if13tfhga7cbsgkkilk6i8n6usb5avpe.apps.googleusercontent.com")
             .requestEmail()
@@ -227,28 +228,7 @@ class LoginActivity : AppCompatActivity() {
 
         }
     }
-
-    // [END auth_with_google]
-
-    /*fun customizeGooglePlusButton(signInButton: SignInButton) {
-        for (i in 0..signInButton.childCount) {
-            val v = signInButton.getChildAt(i)
-
-            if (v is TextView) {
-                val tv = v
-                tv.setText("My Text")
-                tv.setAllCaps(true)
-                tv.setCompoundDrawablesWithIntrinsicBounds(
-                    R.drawable.ic_launcher_foreground,
-                    0,
-                    0,
-                    0
-                )
-                //here you can customize what you want
-                return
-            }
-        }
-    }*/
+    
 
     companion object {
         private const val TAG = "GoogleActivity"
