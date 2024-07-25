@@ -10,11 +10,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -139,9 +141,44 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_report_complaint -> {
                 Toast.makeText(this, "Report Complaint clicked", Toast.LENGTH_SHORT).show()
                 Navigation.findNavController(this,R.id.fragmentContainerView).navigate(R.id.reportComplaintFragment)
-
             }
+
             R.id.nav_logout -> {
+                val alertDialogBuilder = AlertDialog.Builder(this)
+                alertDialogBuilder.setTitle("Confirm Logout")
+                alertDialogBuilder.setMessage("Are you sure you want to log out?")
+                alertDialogBuilder.setPositiveButton("Yes") { dialog, which ->
+                    // Clear preferences
+                    prefManager.clear()
+
+                    // Sign out from Firebase
+                    Firebase.auth.signOut()
+
+                    // Sign out from Google
+                    val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestIdToken("447589151619-if13tfhga7cbsgkkilk6i8n6usb5avpe.apps.googleusercontent.com")
+                        .requestEmail()
+                        .build()
+
+                    googleSignInClient = GoogleSignIn.getClient(this, gso)
+                    googleSignInClient.signOut()
+
+                    // Start LoginActivity
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                    Toast.makeText(this, "Sign out successful", Toast.LENGTH_SHORT).show()
+                }
+                alertDialogBuilder.setNegativeButton("No") { dialog, which ->
+                    // User canceled logout
+                }
+
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
+            }
+
+
+            /*R.id.nav_logout -> {
 
                 prefManager.clear()
 
@@ -158,8 +195,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 finish()
                 Toast.makeText(this, "Sign out clicked", Toast.LENGTH_SHORT).show()
 
-            }
+            }*/
         }
+
+
+
+
+
+
+
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
